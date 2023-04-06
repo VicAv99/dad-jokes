@@ -1,26 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CallState, getError, Joke, LoadingState } from '@jokes/models';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { catchError, EMPTY, Observable, switchMap, tap } from 'rxjs';
 
-export const enum LoadingState {
-  INIT = 'INIT',
-  LOADING = 'LOADING',
-  LOADED = 'LOADED',
-}
-export interface ErrorState {
-  errorMsg: string;
-}
-
-export type CallState = LoadingState | ErrorState;
-
-export type Joke = {
-  id: string;
-  joke: string;
-};
-
 export interface RandomState {
-  joke?: Joke | null;
+  joke?: Joke;
   callState: CallState;
 }
 
@@ -115,13 +100,4 @@ export class RandomStore extends ComponentStore<RandomState> {
       )
     );
   });
-}
-
-// Utility function to extract the error from the state
-function getError(callState: CallState): LoadingState | string | null {
-  if ((callState as ErrorState).errorMsg !== undefined) {
-    return (callState as ErrorState).errorMsg;
-  }
-
-  return null;
 }

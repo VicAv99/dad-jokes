@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jokes/feature/random": ["libs/feature/random/src/index.ts"]
+      "@jokes/feature/random": ["libs/feature/random/src/index.ts"],
+      "@jokes/models": ["libs/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
